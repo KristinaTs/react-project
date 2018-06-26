@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Players from './Components/Players';
-import AddPlayerForm from './Components/AddPlayerForm'
-import Button from './Components/Button';
+import  Login  from './Components/Login'
+import {BrowserRouter , Route, Switch} from 'react-router-dom'
+import Home from './Components/Home';
+import Program from './Components/Program';
 
 class App extends Component {
 
     state = {
-        players: [
+        users: [
             {
                 name: "Bastun (Slavi)",
                 position: "8",
@@ -34,18 +35,15 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    <Players players={this.state.players}/>
-                    <AddPlayerForm addPlayer={this.addPlayer}/>
-                    To get started, edit <code>src/App.js</code> and save to reload.
-                </p>
-                <Button />
-            </div>
+            <BrowserRouter>
+                <div className="App">
+                    <Switch>
+                        <Route path="/" exact component={Home}></Route>
+                        <Route path="/login" exact component={Login}></Route>
+                        <Route path="/program/:id" exact component={Program}></Route>
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }
